@@ -20,7 +20,31 @@
   <scénario taper="module"source="js/app.js"></scénario>
 </corps>
 </HTML>
-    
+{
+  "nom":"HUMIDEUR",
+  "nom_court":"HUMIDEUR",
+  "description":"Votre cave virtuelle et carnet de dégustation",
+  "start_url":"./index.html",
+  "portée":"./",
+  "afficher":"autonome",
+  "orientation":"portrait",
+  "couleur_fond":"#1a1512",
+  "theme_color":"#1a1512",
+  "icônes": [
+    {
+      "src":"icônes/icône-192.png",
+      "tailles":"192x192",
+      "taper":"image/png",
+      "but":"n'importe lequel"
+    },
+    {
+      "src":"icônes/icône-512.png",
+      "tailles":"512x512",
+      "taper":"image/png",
+      "but":"n'importe lequel"
+    }
+  ]
+}    
 const DB = (() => {
   const DB_NAME = 'humidorDB';
   const DB_VERSION = 1;
