@@ -1,3 +1,6 @@
+bash
+
+mkdir -p /home/claude/humidor2/icons && cp /home/claude/humidor/icons/icon-192.png /home/claude/humidor/icons/icon-512.png /home/claude/humidor2/icons/ && ls /home/claude/humidor2/icons
 /* database.js
  * ---------------------------------------------------------------------
  * Couche de stockage local, basée sur IndexedDB.
@@ -366,6 +369,10 @@ const DB = (() => {
     addMovement, getMovements,
     addTasting, getTastings, getTasting, getTastingsForCigar,
     getHumidors, updateHumidor,
+    Sortie
+
+icon-192.png
+icon-512.png
     getSettings, updateSettings,
     exportAll, importAll, clearDemoData, resetAll,
   };
