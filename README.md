@@ -45,6 +45,57 @@
     }
   ]
 }    
+   // service-worker.js — Cache "app shell" pour un fonctionnement hors ligne.
+// Stratégie simple et robuste pour une V1 : cache-first pour les fichiers
+// de l'application, avec réponse réseau si un fichier manque au cache.
+const NOM_CACHE = 'humidor-cache-v1';
+const APP_SHELL = [
+  './',
+  './index.html',
+  './manifest.json',
+  './css/style.css',
+  './js/app.js',
+  './js/storage.js',
+  './js/utils.js',
+  './js/icons.js',
+  './js/screens/home.js',
+  './js/screens/humidor.js',
+  './js/screens/addCigar.js',
+  './js/screens/editCigar.js',
+  './js/screens/detail.js',
+  './js/screens/placeholder.js',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+];
+soi.ajouterEventListener('installer', (événement) => {
+  événement.attendre jusqu'à(
+    caches.ouvrir(NOM_CACHE).alors((cache) => cache.ajouterTout(APP_SHELL))
+  );
+  soi.ignorer l'attente();
+});
+soi.ajouterEventListener('activer', (événement) => {
+  événement.attendre jusqu'à(
+    caches.clés().alors((clés) =>
+      Promesse.tous(clés.filtre((k) => k !== NOM_CACHE).carte((k) => caches.supprimer(k)))
+    )
+  );
+  soi.clients.réclamer();
+});
+soi.ajouterEventListener('aller chercher', (événement) => {
+  si (événement.demande.méthode !== 'OBTENIR') retour;
+  événement.répondre avec(
+    caches.correspondre(événement.demande).alors((en cache) => {
+      si (en cache) retour en cache;
+      retour aller chercher(événement.demande)
+        .alors((réponse) => {
+          const copie = réponse.cloner();
+          caches.ouvrir(NOM_CACHE).alors((cache) => cache.mettre(événement.demande, copie));
+          retour réponse;
+        })
+        .attraper(() => caches.correspondre('./index.html'));
+    })
+  );
+}); 
 const DB = (() => {
   const DB_NAME = 'humidorDB';
   const DB_VERSION = 1;
