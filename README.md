@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<HTML langue="fr">
+<tête>
+  <méta jeu de caractères="UTF-8">
+  <méta nom="fenêtre d'affichage"contenu="largeur=largeur de l'appareil, échelle initiale=1, ajustement à la fenêtre d'affichage=couverture, échelle maximale=1">
+  <titre>HUMIDEUR</titre>
+  <méta nom="description"contenu="Votre cave virtuelle et carnet de dégustation">
+  <lien relation="manifeste"href="manifest.json">
+  <méta nom="couleur du thème"contenu="#1a1512">
+  <!-- Paramètres iOS pour l'ajout à l'écran d'accueil -->
+  <méta nom="application web mobile Apple compatible"contenu="Oui">
+  <méta nom="style de barre d'état d'une application web mobile Apple"contenu="noir translucide">
+  <méta nom="titre de l'application web mobile Apple"contenu="HUMIDEUR">
+  <lien relation="icône Apple Touch"href="icônes/icône-192.png">
+  <lien relation="icône"href="icônes/icône-192.png">
+  <lien relation="feuille de style"href="css/style.css">
+</tête>
+<corps>
+  <div identifiant="application"></div>
+  <scénario taper="module"source="js/app.js"></scénario>
+</corps>
+</HTML>
+    
 const DB = (() => {
   const DB_NAME = 'humidorDB';
   const DB_VERSION = 1;
